@@ -16,3 +16,7 @@ class UserResponse(BaseModel):
 
     class Config:
         orm_mode = True
+
+class AuthResponse(BaseModel):
+    jwt: str
+    user: UserResponse 

@@ -1,8 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
-from .db import get_db  # Importe sua função de conexão com o banco de dados
+# import db as database  # Importe sua função de conexão com o banco de dados
 from .routes import router  # Importe seu roteador onde os endpoints estão definidos
 
 # Criação da instância FastAPI
@@ -18,12 +18,11 @@ app.add_middleware(
 )
 
 # Inicializa o banco de dados
-DATABASE_URL = "postgresql://usuario:senha@localhost:5432/seubancodedados"
+DATABASE_URL = "postgresql://cloud:cloud@localhost:5432/2b649a99ee923032cb3d97bedd5c6d950b2b45c876f4607bc87817d019751e5b"
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Dependência para obter a sessão do banco de dados
-@app.dependencies
 def get_db_session():
     db = SessionLocal()
     try:
@@ -38,3 +37,5 @@ app.include_router(router)
 @app.get("/")
 def read_root():
     return {"message": "Bem-vindo à API!"}
+
+

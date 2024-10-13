@@ -4,7 +4,7 @@ import jwt
 from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
 from datetime import datetime, timedelta
 from .models import User
-from .db import get_db
+# from .services import get_db
 from sqlalchemy.orm import Session
 
 SECRET_KEY = "bebequinh4"  # Mude isso para algo seguro
