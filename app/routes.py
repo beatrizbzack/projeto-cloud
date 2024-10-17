@@ -5,8 +5,10 @@ from .auth import create_access_token, authenticate_user, get_password_hash, val
 from .models import User
 from .services import get_db
 from .scraping import get_random_fact
+from fastapi.security import OAuth2PasswordBearer 
 
 router = APIRouter()
+
 
 # Registrar o usuário
 @router.post("/registrar", response_model=AuthResponse)
@@ -28,11 +30,6 @@ async def register(user: UserCreate, db: Session = Depends(get_db)):
 
     return {
         "jwt": token,
-        "user": {
-            "id": new_user.id,
-            "name": new_user.name,
-            "email": new_user.email
-        } 
     } 
 
 # Faça login 
@@ -49,6 +46,7 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
 @router.get("/consultar")
 def consultar_data(authorization: str = Header(None)):
     # Verifica se o header Authorization foi enviado corretamente
+    print(authorization)
     if not authorization or not authorization.startswith("Bearer "):
         raise HTTPException(status_code=403, detail="JWT ausente ou inválido")
 

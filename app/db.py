@@ -2,7 +2,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker 
 
-DATABASE_URL = "postgresql://cloud:cloud@localhost/database"
+# colocar senha e user no venv
+DATABASE_URL = "postgresql://cloud:cloud@db/database"
 
 engine = create_engine(DATABASE_URL)
 
