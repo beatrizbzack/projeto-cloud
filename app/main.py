@@ -2,9 +2,10 @@ from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
-# import db as database  # Importe sua função de conexão com o banco de dados
+from .db import Base, engine  # Importa o Base para criação das tabelas
 from .routes import router  # Importe seu roteador onde os endpoints estão definidos
-
+import os 
+ 
 # Criação da instância FastAPI
 app = FastAPI()
 
@@ -18,8 +19,7 @@ app.add_middleware(
 )
 
 # Inicializa o banco de dados
-DATABASE_URL = "postgresql://cloud:cloud@localhost:5432/2b649a99ee923032cb3d97bedd5c6d950b2b45c876f4607bc87817d019751e5b"
-engine = create_engine(DATABASE_URL)
+DATABASE_URL = os.getenv("DATABASE_URL")
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Dependência para obter a sessão do banco de dados
@@ -29,6 +29,14 @@ def get_db_session():
         yield db
     finally:
         db.close()
+
+# Criar as tabelas do banco de dados
+# @app.on_event("startup")
+# def startup():
+#     print("Criando tabelas no banco de dados...")
+#     Base.metadata.create_all(bind=engine)
+#     print("Tabelas criadas com sucesso!")
+
 
 # Incluindo os roteadores que contêm os endpoints
 app.include_router(router)
