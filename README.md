@@ -2,7 +2,7 @@
 
 **Desenvolvido por: Beatriz Borges Zackiewicz**  
 
-![API Banner](./assets/banner.png)  
+![API Banner](./assets/ilustracao-projeto.png)  
 <!-- Adicione uma imagem representativa do projeto -->
 
 ---
