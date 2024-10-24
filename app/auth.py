@@ -6,8 +6,9 @@ from datetime import datetime, timedelta
 from .models import User
 # from .services import get_db
 from sqlalchemy.orm import Session
+import os 
 
-SECRET_KEY = "bebequinh4"  # Mude isso para algo seguro
+SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
