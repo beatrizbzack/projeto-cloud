@@ -1,8 +1,0 @@
-{
-  "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJodW1iQGVtYWlsLmNvbSIsImV4cCI6MTcyOTE4ODM1Mn0.R83tSsDn2RdU7zOudK2yQcgYjVw786nggo9uUS9Cc1U",
-  "user": {
-    "id": 7,
-    "name": "humb",
-    "email": "humb@email.com"
-  }
-}

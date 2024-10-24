@@ -1,4 +1,4 @@
-# 🎯 Projeto de API RESTful com Scraping de Dados
+# 🎯 Projeto de API RESTful com Scraping de Dados - Fatos Aleatórios
 
 **Desenvolvido por: Beatriz Borges Zackiewicz**  
 
@@ -9,11 +9,11 @@
 
 ## 📖 Visão Geral
 
-Este projeto envolve a criação de uma **API RESTful** para fornecer dados obtidos via **scraping**. A aplicação foi desenvolvida utilizando **FastAPI** e utiliza **MongoDB** como base de dados. Toda a infraestrutura está conteinerizada com **Docker**, permitindo uma fácil replicação do ambiente.
+Este projeto envolve a criação de uma **API RESTful** para fornecer dados obtidos via **scraping**. A aplicação foi desenvolvida utilizando **FastAPI** e utiliza **POSTGRES** como base de dados. Toda a infraestrutura está conteinerizada com **Docker**, permitindo uma fácil replicação do ambiente.
 
 - **Frameworks**: FastAPI, Pydantic
-- **Banco de Dados**: MongoDB
-- **Scraping**: BeautifulSoup, Requests
+- **Banco de Dados**: Postgres
+- **Scraping**: Requests
 - **Deploy**: Docker, Docker Hub
 
 ---
@@ -30,12 +30,30 @@ A documentação oficial está hospedada no **GitHub Pages**, gerada automaticam
 
 ```bash
 .
-├── app/
-│   ├── main.py                # Arquivo principal da API
-│   ├── scraping.py            # Função de scraping de dados
-│   ├── models.py              # Modelos de dados (Pydantic)
-│   ├── routers.py             # Definição das rotas
-│   └── utils.py               # Funções auxiliares
-├── docker-compose.yaml        # Arquivo Docker Compose
-├── Dockerfile                 # Dockerfile para a API
-└── README.md                  # Este documento
+├── app
+│   ├── __pycache__
+│   │   └── __init__.py
+│   ├── auth.py
+│   ├── db.py
+│   ├── Dockerfile
+│   ├── exec.py
+│   ├── main.py
+│   ├── models.py
+│   ├── requirements.txt
+│   ├── routes.py
+│   ├── schemas.py
+│   ├── scraping.py
+│   ├── services.py
+├── assets
+│   └── ilustracao-projeto.png
+├── db
+│   └── 01_init.sql
+├── tests
+│   └── test_auth.py
+├── venv
+├── .env
+├── .env.example
+├── .gitignore
+├── docker-compose.yml
+└── README.md
+
