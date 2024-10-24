@@ -6,8 +6,13 @@ from .models import User
 from .services import get_db
 from .scraping import get_random_fact
 from fastapi.security import OAuth2PasswordBearer 
+from typing import Annotated 
+from fastapi import Request
 
 router = APIRouter()
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
 
 
 # Registrar o usuário
@@ -42,16 +47,20 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
     token = create_access_token({"sub": db_user.email})
     return {"jwt": token}
 
+
+
 # Endpoint GET /consultar que exige autenticação via JWT
 @router.get("/consultar")
-def consultar_data(authorization: str = Header(None)):
+def consultar_data(token: Annotated[str, Depends(oauth2_scheme)]):
     # Verifica se o header Authorization foi enviado corretamente
-    print(authorization)
-    if not authorization or not authorization.startswith("Bearer "):
+    print(token)
+    
+
+    if not token or not token.startswith("Bearer "):
         raise HTTPException(status_code=403, detail="JWT ausente ou inválido")
 
     # Extrai o token do header
-    jwt_token = authorization.split(" ")[1]
+    jwt_token = token
 
     # Valida o JWT
     validate_jwt(jwt_token)  # Verifica se o token é válido

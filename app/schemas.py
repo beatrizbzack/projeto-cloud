@@ -19,3 +19,5 @@ class UserResponse(BaseModel):
 
 class AuthResponse(BaseModel):
     jwt: str
+
+
