@@ -11,6 +11,7 @@ resp2 = req.post(
 )
 print(resp2.status_code)
 token=resp2.json()['jwt'] 
+print(token)
 
 resp = req.get(
     'http://localhost:8000/consultar',

@@ -31,11 +31,11 @@ def get_db_session():
         db.close()
 
 # Criar as tabelas do banco de dados
-@app.on_event("startup")
-def startup():
-    print("Criando tabelas no banco de dados...")
-    Base.metadata.create_all(bind=engine)
-    print("Tabelas criadas com sucesso!")
+# @app.on_event("startup")
+# def startup():
+#     print("Criando tabelas no banco de dados...")
+#     Base.metadata.create_all(bind=engine)
+#     print("Tabelas criadas com sucesso!")
 
 
 # Incluindo os roteadores que contêm os endpoints

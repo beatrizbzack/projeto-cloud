@@ -1,5 +1,5 @@
 # import models as models 
-from db import SessionLocal, engine, Base 
+from .db import SessionLocal, engine, Base 
 
 
 def add_tables():

@@ -15,11 +15,12 @@ services:
     #   - ./db:/docker-entrypoint-initdb.d
 
   app:
-    #build:
-    #   context: ./app
-    image: beatrizbzack/projeto-cloud-app:latest2
+#    build:
+#       context: ./app
+    image: beatrizbzack/projeto-cloud-app:latest
     environment:
       DATABASE_URL: ${DATABASE_URL:-postgresql://projeto:projeto@db:5432/projeto} 
+      SECRET_KEY: ${SECRET_KEY:-mysecretkey}  # Adicione esta linha
     ports:
       - "8000:8000"
     depends_on:

@@ -14,27 +14,31 @@ router = APIRouter()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
-
 # Registrar o usuário
-@router.post("/registrar", response_model=AuthResponse)
+@router.post("/registrar", response_model=dict)
 async def register(user: UserCreate, db: Session = Depends(get_db)):
+
+    print('\\\\\ ENTROU NO REGISTRAR \\\\\\') 
 
     db_user = db.query(User).filter(User.email == user.email).first()
     if db_user:
         raise HTTPException(status_code=409, detail="Email já registrado")
     
+
     hashed_password = get_password_hash(user.password)
     new_user = User(name=user.name, email=user.email, hashed_password=hashed_password)
+
+    # Gera o token de acesso
+    print(type(new_user.email))
+    token = create_access_token({"sub": new_user.email})
 
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
     
-    # Gera o token de acesso
-    token = create_access_token({"sub": new_user.email})
 
     return {
-        "jwt": token,
+        "jwt": token
     } 
 
 # Faça login 
