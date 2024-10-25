@@ -5,7 +5,7 @@ import json
 resp2 = req.post(
     'http://localhost:8000/login',
     json={
-        "email": "teste",
+        "email": "teste2",
         "password": "123"
     }
 )

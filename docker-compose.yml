@@ -15,8 +15,9 @@ services:
     #   - ./db:/docker-entrypoint-initdb.d
 
   app:
-    build:
-      context: ./app
+    #build:
+    #   context: ./app
+    image: beatrizbzack/projeto-cloud-app:latest2
     environment:
       DATABASE_URL: ${DATABASE_URL:-postgresql://projeto:projeto@db:5432/projeto} 
     ports:

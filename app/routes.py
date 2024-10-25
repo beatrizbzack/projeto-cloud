@@ -53,7 +53,7 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
 @router.get("/consultar")
 def consultar_data(token: Annotated[str, Depends(oauth2_scheme)]):
     # Verifica se o header Authorization foi enviado corretamente
-    print(token)
+    # print(token)
     
 
     if not token or not token.startswith("Bearer "):
