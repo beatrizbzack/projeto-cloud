@@ -10,7 +10,7 @@ import os
 
 import os
 
-SECRET_KEY = os.getenv("SECRET_KEY", "your_default_secret")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
@@ -29,13 +29,13 @@ def authenticate_user(db: Session, email: str, password: str):
         return False
     return user
 
-def create_access_token(data: dict):
-    print(type(SECRET_KEY)) 
+def create_access_token(data: dict, expires_delta: timedelta = None):
     to_encode = data.copy()
-    expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    expire = datetime.utcnow() + (expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
+
 
 # Função que valida o JWT
 def validate_jwt(token: str):

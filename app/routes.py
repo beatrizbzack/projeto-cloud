@@ -18,8 +18,6 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 @router.post("/registrar", response_model=dict)
 async def register(user: UserCreate, db: Session = Depends(get_db)):
 
-    print('\\\\\ ENTROU NO REGISTRAR \\\\\\') 
-
     db_user = db.query(User).filter(User.email == user.email).first()
     if db_user:
         raise HTTPException(status_code=409, detail="Email já registrado")
@@ -29,7 +27,7 @@ async def register(user: UserCreate, db: Session = Depends(get_db)):
     new_user = User(name=user.name, email=user.email, hashed_password=hashed_password)
 
     # Gera o token de acesso
-    print(type(new_user.email))
+    # print(type(new_user.email))
     token = create_access_token({"sub": new_user.email})
 
     db.add(new_user)
@@ -56,18 +54,13 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
 # Endpoint GET /consultar que exige autenticação via JWT
 @router.get("/consultar")
 def consultar_data(token: Annotated[str, Depends(oauth2_scheme)]):
-    # Verifica se o header Authorization foi enviado corretamente
-    # print(token)
-    
-
-    if not token or not token.startswith("Bearer "):
-        raise HTTPException(status_code=403, detail="JWT ausente ou inválido")
-
-    # Extrai o token do header
-    jwt_token = token
-
-    # Valida o JWT
-    validate_jwt(jwt_token)  # Verifica se o token é válido
+    # O token já é passado diretamente, não precisa de verificação extra.
+    try:
+        # Valida o JWT
+        decoded_token = validate_jwt(token)
+    except HTTPException as e:
+        # Lida com exceções de validação
+        raise e
 
     # Faz a chamada para a API de fatos aleatórios
     random_fact = get_random_fact()

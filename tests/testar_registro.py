@@ -5,8 +5,8 @@ import requests as req
 resp1 = req.post(
     'http://localhost:8000/registrar', 
     json={
-        "name": "meodeio",
-        "email": "meodeio",
+        "name": "lalaa",
+        "email": "lalaa",
         "password": "123"
     }
 )
