@@ -1,7 +1,7 @@
 # 🎯 Projeto de API RESTful com Scraping de Dados - Fatos Aleatórios
 
 **Desenvolvido por: Beatriz Borges Zackiewicz**  
-**Docker Hub: https://hub.docker.com/r/beatrizbzack/projeto-cloud-app/tags**
+**Docker Hub: https://hub.docker.com/r/beatrizbzack/projeto-cloud-app**
 
 ![API Banner](./assets/ilustracao-projeto.png)  
 <!-- Adicione uma imagem representativa do projeto -->
