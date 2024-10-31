@@ -4,7 +4,7 @@ import requests as req
 resp2 = req.post(
     'http://localhost:8000/login',
     json={
-        "email": "lalaa",
+        "email": "lalaa1",
         "password": "123"
     }
 )
