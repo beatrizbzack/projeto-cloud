@@ -1,8 +1,8 @@
-version: "3.9"
+name: projeto-cloud
 
 services:
   db:
-    image: postgres:16
+    image: postgres:17
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-projeto}
       POSTGRES_USER:  ${POSTGRES_USER:-projeto}
@@ -26,6 +26,3 @@ services:
     depends_on:
       - db
 
-
-volumes:
-  db-data:
