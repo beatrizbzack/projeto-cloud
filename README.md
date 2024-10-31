@@ -40,7 +40,6 @@ A documentação oficial está hospedada no **GitHub Pages**, gerada automaticam
 │   ├── auth.py
 │   ├── db.py
 │   ├── Dockerfile
-│   ├── exec.py
 │   ├── main.py
 │   ├── models.py
 │   ├── requirements.txt
@@ -49,17 +48,19 @@ A documentação oficial está hospedada no **GitHub Pages**, gerada automaticam
 │   ├── scraping.py
 │   ├── services.py
 ├── assets
-│   └── ilustracao-projeto.png
 ├── db
-│   └── 01_init.sql
 ├── tests
-│   └── test_auth.py
+│   ├── test_auth.py
+│   ├── testar_api.py
+│   ├── testar_registro.py
 ├── venv
 ├── .env
 ├── .env.example
 ├── .gitignore
 ├── docker-compose.yml
+├── lala.py
 └── README.md
+
 ```
 --- 
 ## Endpoints da API
@@ -170,3 +171,4 @@ Teste de login e consulta de fato aleatório:
 
 
 ## Vídeo:
+![Vídeo da API Rodando](./assets/Reunião com Beatriz Borges Zackiewicz-20241031_144919-Gravação de Reunião.mp4)
