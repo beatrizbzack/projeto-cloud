@@ -2,7 +2,7 @@ import requests as req
 
 # Teste de Login
 resp2 = req.post(
-    'http://localhost:8000/login',
+    'http://acaec9c5d2e0b4120a9cff376509986a-1261828741.us-east-2.elb.amazonaws.com/login',
     json={
         "email": "lalaa1",
         "password": "123"
@@ -14,7 +14,7 @@ print(token)
 
 if token:  # Verifica se o token foi recebido com sucesso
     resp = req.get(
-        'http://localhost:8000/consultar',
+        'http://acaec9c5d2e0b4120a9cff376509986a-1261828741.us-east-2.elb.amazonaws.com/consultar',
         headers={
             'Authorization': f'Bearer {token}'  
         }
