@@ -59,6 +59,9 @@ A documentação oficial está hospedada no **GitHub Pages**, gerada automaticam
 ├── .gitignore
 ├── docker-compose.yml
 ├── lala.py
+├── deployment.yml
+├── postgres-deployment.yml
+├── service.yml
 └── README.md
 
 ```
@@ -152,9 +155,9 @@ Ou:
 - Direto pelo terminal do seu sistema operacional com os comandos de request de acordo com cada endpoint que deseja testar (consultar tópico de endpoints)
 
 ---
-# Screenshots da API e Vídeo Demonstrativo
+# Screenshots da API e Vídeo Demonstrativo (PARTE 1)
 --- 
-## /resitrar
+## /registrar
 Teste de registro de novo usuário:
 ![Teste registro - cadastro](./assets/test-register-1.png)  
 
@@ -172,3 +175,55 @@ Teste de login e consulta de fato aleatório:
 
 ## Vídeo:
 ![Vídeo da API Rodando](./assets/Reunião com Beatriz Borges Zackiewicz-20241031_144919-Gravação de Reunião.mp4)
+
+---
+# Deploy na AWS (PARTE 2)
+--- 
+## Publicação na AWS
+
+Para este projeto, os seguintes serviços AWS estão sendo utilizados:
+
+- EKS (Elastic Kubernetes Service): Gerencia o cluster Kubernetes para implantar e orquestrar os contêineres.
+
+- LoadBalancer: Criado automaticamente pelo Kubernetes no serviço EKS para expor a aplicação FastAPI ao público, permitindo acesso externo.
+
+- EC2 (Elastic Compute Cloud): Fornece as instâncias de máquinas virtuais que hospedam os nós de trabalho do cluster Kubernetes.
+
+- Amazon VPC: Proporciona uma rede isolada para os recursos do cluster, garantindo segurança e controle do tráfego de rede.
+
+- IAM (Identity and Access Management): Configura permissões e roles para o Kubernetes interagir com outros serviços da AWS.
+
+Esses serviços, juntos, criam a infraestrutura necessária para rodar uma aplicação em contêiner com alta disponibilidade e escalabilidade.
+
+## Arquivos de Configuração de Kubernetes
+
+A seguir estão os arquivos de configuração usados no Kubernetes e suas funções:
+
+1. ``deployment.yml``:
+
+- Este arquivo define o Deployment para a aplicação FastAPI.
+- Configura o número de réplicas (neste caso, 1) e especifica a imagem do Docker a ser usada: beatrizbzack/projeto-cloud-app:latest.
+- Configura variáveis de ambiente, como DATABASE_URL e SECRET_KEY, necessárias para a aplicação.
+- Exemplo: Garante que a API FastAPI esteja disponível no cluster Kubernetes.
+
+
+2. ``postgres-deployment.yml``:
+- Define o Deployment para o banco de dados PostgreSQL.
+- Configura as variáveis de ambiente como POSTGRES_DB, POSTGRES_USER e POSTGRES_PASSWORD.
+- Inclui um volume para persistência dos dados, configurado para ser temporário (emptyDir).
+- Exemplo: Proporciona o backend de banco de dados para a aplicação FastAPI.
+
+
+3. ``service.yml``:
+
+- Define os Services para a API FastAPI e o banco de dados PostgreSQL.
+- Para a API:
+  - Expõe o serviço como um LoadBalancer, permitindo acesso externo ao FastAPI na porta 80.
+- Para o PostgreSQL:
+  - Configura um serviço interno acessível na porta 5432 para os pods conectarem-se ao banco.
+- Exemplo: Garante comunicação entre os componentes internos do cluster e expõe a API ao público. 
+
+## Vídeo Demonstração AWS
+
+Vídeo demonstrando o funcionamento da API
+
