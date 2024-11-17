@@ -225,5 +225,7 @@ A seguir estão os arquivos de configuração usados no Kubernetes e suas funç�
 
 ## Vídeo Demonstração AWS
 
-Vídeo demonstrando o funcionamento da API
+Vídeo demonstrando o funcionamento da API:
+
+![Vídeo da API na AWS Rodando](./assets/Reunião%20com%20Beatriz%20Borges%20Zackiewicz-20241117_155743-Gravação%20de%20Reunião.mp4) 
 

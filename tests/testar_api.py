@@ -4,8 +4,8 @@ import requests as req
 resp2 = req.post(
     'http://acaec9c5d2e0b4120a9cff376509986a-1261828741.us-east-2.elb.amazonaws.com/login',
     json={
-        "email": "lalaa1",
-        "password": "123"
+        "email": "humbas",
+        "password": "humbas"
     }
 )
 print(resp2.status_code)
